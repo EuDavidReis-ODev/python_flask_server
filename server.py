@@ -1,16 +1,16 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
  
 app = Flask(__name__)
 app.debug = True
  
 @app.route('/')
 def index():
-    return "Página principal."
+    return render_template('index.html')
  
 @app.route('/ola/')
 @app.route('/ola/<nome>')
-def ola_mundo(nome):
-    return "Olá, " + nome
+def ola_mundo(nome="mundo"):
+    return render_template('ola_mundo.html', nome_recebido = nome)
  
 @app.route('/logar', methods=['GET', 'POST'])
 def logar():
